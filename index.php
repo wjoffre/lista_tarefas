@@ -32,12 +32,12 @@
                         </a>
                     </li>
                     <li class="list-group-item ">
-                        <a href="#">
+                        <a href="nova_tarefa.php">
                             Nova tarefa
                         </a>
                     </li>
                     <li class="list-group-item ">
-                        <a href="#">
+                        <a href="todas_tarefas.php">
                             Todas as tarefas
                         </a>
                     </li>
