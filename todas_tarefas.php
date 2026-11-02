@@ -2,10 +2,6 @@
 $acao = 'recuperar';
 require 'tarefa_controler.php';
 $tarefas = isset($tarefas) ? $tarefas : [];
-
-/* echo '<pre>';
-print_r($tarefas);
-echo '</pre>'; */
 ?>
 
 <html>
@@ -40,10 +36,10 @@ echo '</pre>'; */
 			inputTarefa.value = txt_tarefa;
 
 			//criar um input hidden para guardar o id da tarefa
-			let inputid=document.createElement('input');
-			inputid.type='hidden';
-			inputid.name='id';
-			inputid.value=id;
+			let inputid = document.createElement('input');
+			inputid.type = 'hidden';
+			inputid.name = 'id';
+			inputid.value = id;
 
 			//criar um botão para envio do form
 			let button = document.createElement('button');
@@ -72,6 +68,10 @@ echo '</pre>'; */
 			//incluir form na página
 			tarefa.insertBefore(form, tarefa[0]);
 			//tarefa.appendChild(form);
+		}
+
+		function remover(id) {
+			location.href = 'todas_tarefas.php?acao=remover&id=' + id;
 		}
 	</script>
 </head>
@@ -109,22 +109,12 @@ echo '</pre>'; */
 										<?= $tarefa->tarefa ?> (<?= $tarefa->status ?>)
 									</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id ?>)"></i>
 										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
 										<i class="fas fa-check-square fa-lg text-success"></i>
 									</div>
 								</div>
 							<?php } ?>
-
-							<!-- 							<div class="row mb-3 d-flex align-items-center tarefa">
-								<div class="col-sm-9">Passear com o cachorro (status)</div>
-								<div class="col-sm-3 mt-2 d-flex justify-content-between">
-									<i class="fas fa-trash-alt fa-lg text-danger"></i>
-									<i class="fas fa-edit fa-lg text-info"></i>
-									<i class="fas fa-check-square fa-lg text-success"></i>
-								</div>
-							</div> -->
-
 						</div>
 					</div>
 				</div>

@@ -28,15 +28,25 @@ if ($acao == "inserir") {
     $tarefas = $tarefaService->recuperar();
 } else if ($acao == "atualizar") {
     $tarefa = new Tarefa();
-    $tarefa->__set('id',$_POST['id']);
-    $tarefa->__set('tarefa',$_POST['tarefa']);
+    $tarefa->__set('id', $_POST['id']);
+    $tarefa->__set('tarefa', $_POST['tarefa']);
 
     $conexao = new Conexao();
 
-    $tarefaService = new TarefaService($conexao,$tarefa);
-    if($tarefaService->atualizar()){
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    if ($tarefaService->atualizar()) {
         header('location: todas_tarefas.php');
     }
+} else if ($acao == "remover") {
+
+    $tarefa=new Tarefa();
+    $tarefa->__set('id',$_GET['id']);
+
+    $conexao = new Conexao();
+
+    $tarefaService=new TarefaService($conexao,$tarefa);
+    $tarefaService->remover();
+    header('location: todas_tarefas.php');
 }
 
 //Ponto de prova

@@ -19,6 +19,6 @@ class Tarefa
 
     public function __set(string $atributo, mixed $valor)
     {
-        $this->$atributo = $valor;
+       $this->$atributo = $valor;
     }
 }
