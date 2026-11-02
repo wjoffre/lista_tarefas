@@ -7,10 +7,10 @@
  */
 class Tarefa
 {
-    private int $id;
-    private int $id_status;
-    private string $tarefa;
-    private string $data_cadastro;
+    private ?int $id=null;
+    private ?int $id_status=null;
+    private ?string $tarefa=null;
+    private ?string $data_cadastro=null;
 
     public function __get(string $atributo)
     {
