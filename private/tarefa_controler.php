@@ -4,11 +4,6 @@ require "private/tarefa.model.php";
 require "private/tarefa.service.php";
 require 'private/conexao.php';
 
-//Ponto de prova
-/* echo '<pre>';
-print_r($_POST);
-echo '</pre>'; */
-
 $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
 if ($acao == "inserir") {
@@ -19,12 +14,13 @@ if ($acao == "inserir") {
 
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->inserir();
-    echo "dados inserido";
+
     header('Location: nova_tarefa.php?inclusao=1');
 } else if ($acao == "recuperar") {
     $tarefa = new Tarefa();
     $conexao = new Conexao();
     $tarefaService = new TarefaService($conexao, $tarefa);
+
     $tarefas = $tarefaService->recuperar();
 } else if ($acao == "atualizar") {
     $tarefa = new Tarefa();
@@ -34,22 +30,29 @@ if ($acao == "inserir") {
     $conexao = new Conexao();
 
     $tarefaService = new TarefaService($conexao, $tarefa);
+
     if ($tarefaService->atualizar()) {
         header('location: todas_tarefas.php');
     }
 } else if ($acao == "remover") {
 
-    $tarefa=new Tarefa();
-    $tarefa->__set('id',$_GET['id']);
+    $tarefa = new Tarefa();
+    $tarefa->__set('id', $_GET['id']);
 
     $conexao = new Conexao();
 
-    $tarefaService=new TarefaService($conexao,$tarefa);
+    $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService->remover();
+
+    header('location: todas_tarefas.php');
+} else if ($acao == "marcarRealizada") {
+    $tarefa = new Tarefa();
+    $tarefa->__set('id', $_GET['id'])->__set('id_status', 2);
+
+    $conexao = new Conexao();
+
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    $tarefaService->marcarRealizada();
+
     header('location: todas_tarefas.php');
 }
-
-//Ponto de prova
-/* echo '<pre>';
-print_r($tarefas);
-echo '</pre>'; */
